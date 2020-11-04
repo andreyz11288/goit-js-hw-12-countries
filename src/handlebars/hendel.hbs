@@ -1,9 +1,16 @@
-<div class="card">
-    <div class="card-img-top">
-        {{!-- <img src="{{sprites.front_default}}" alt="{{name}}"> --}}
+{{#each this}}
+<li class="card-body">
+    <h2 class=`card-title `> {{name}}</h2>
+    <p>Capital: {{capital}}</p>
+    <p>Population: {{population}}</p>
+    <p>Languages:</p>
+    <ul>
+        {{#each languages}}
+        <li>{{name}}</li>
+        {{/each}}
+    </ul>
 
-        <div class="card-body">
-            <h2 class="card-title">Имя: {{name}}</h2>
-        </div>
-    </div>
-</div>
+    <img src="{{flag}}" alt="{{name}}" width="200">
+
+</li>
+{{/each}}
