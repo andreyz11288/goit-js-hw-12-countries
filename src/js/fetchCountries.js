@@ -1,8 +1,7 @@
 import CardTpl from '../handlebars/hendel.hbs'
-
 const searchForm = document.querySelector('.form-control');
 const form = document.querySelector('.form')
-searchForm.addEventListener('input', fetchCountries);
+searchForm.addEventListener('input', _.debounce(fetchCountries, 500));
 
 
 
@@ -10,9 +9,6 @@ searchForm.addEventListener('input', fetchCountries);
 
 const nameValue = searchForm.value
 const url =`https://restcountries.eu/rest/v2/name/${nameValue}`;
-   
-   
-   
 
 fetch(url)
   .then(r => r.json())
@@ -20,16 +16,19 @@ fetch(url)
     .catch(onFetchError);
  }
 
- function renderCard(countrie) {
+
+function renderCard(countrie) {
+   form.innerHTML = ''
   const markup = CardTpl(countrie);
    form.insertAdjacentHTML('beforeend', markup);
    console.log(markup)
       
     }
 
-function onFetchError(error) {
+
+ function onFetchError(error) {
   alert('Упс, что-то пошло не так!');
-}
+ }
 
 
 export default {fetchCountries}
