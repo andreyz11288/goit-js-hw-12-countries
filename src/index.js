@@ -16,15 +16,14 @@ searchForm.addEventListener('input', _.debounce(fetchCountrie, 500));
 
 
 function fetchCountrie() {    
-    fetchCountriesFunction(searchForm.value).then(renderCard)
-    .catch(onFetchError);
+  fetchCountriesFunction(searchForm.value).then(renderCard)
+  .catch(onFetchError);
 }
 
 
 
 
-function renderCard(countrie) {
-  
+function renderCard(countrie) {  
   form.innerHTML = ''  
   countrieSpan.textContent = countrie.length;
   const markup = CardTpl(countrie);
@@ -49,6 +48,7 @@ function noticeError() {
 
 function onFetchError() {
   form.innerHTML = ''
+  countrieSpan.textContent = 0;
 }
 
 
