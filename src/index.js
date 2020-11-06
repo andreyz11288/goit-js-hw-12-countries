@@ -10,6 +10,7 @@ import { alert, error } from '@pnotify/core';
 const searchForm = document.querySelector('.form-control');
 const form = document.querySelector('.form')
 const countrieSpan = document.querySelector('.coun-span')
+const countrieP = document.querySelector('.coun-p')
 searchForm.addEventListener('input', _.debounce(fetchCountrie, 500));
 
 
@@ -24,8 +25,9 @@ function fetchCountrie() {
 
 
 function renderCard(countrie) {  
-  form.innerHTML = ''  
-  countrieSpan.textContent = countrie.length;
+  form.innerHTML = '' 
+  if (countrie.length === undefined) { countrieP.textContent = "Такой страны не существует!"; }
+  else { countrieP.textContent = `Найдено стран: ${countrie.length}`; }
   const markup = CardTpl(countrie);
   const markupTwo = CardTplTwo(countrie);
   if (countrie.length === 1) { form.insertAdjacentHTML('beforeend', markup); }
@@ -33,7 +35,7 @@ function renderCard(countrie) {
     form.insertAdjacentHTML('beforeend', markupTwo);
     if (countrie.length > 10) {
       noticeError(countrie.length)
-    }
+    } 
   }        
 }
     
@@ -48,7 +50,7 @@ function noticeError() {
 
 function onFetchError() {
   form.innerHTML = ''
-  countrieSpan.textContent = 0;
+  countrieP.textContent = `Введите название страны`;
 }
 
 
