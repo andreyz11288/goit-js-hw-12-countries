@@ -24,40 +24,31 @@ function fetchCountrie() {
 
 
 function renderCard(countrie) {
-  console.log(countrie.length)
+  
   form.innerHTML = ''  
-  const length = countrie.length
-  countrieSpan.textContent = length;
+  countrieSpan.textContent = countrie.length;
   const markup = CardTpl(countrie);
   const markupTwo = CardTplTwo(countrie);
   if (countrie.length === 1) { form.insertAdjacentHTML('beforeend', markup); }
   else {
     form.insertAdjacentHTML('beforeend', markupTwo);
     if (countrie.length > 10) {
-        form.innerHTML = ''
-      const myNotice = error({
-        delay: 1000,
-        hide: true,
-        sticker: false,
-          text: "Too many matches found. Pleas enter a more specific query"});
+      noticeError(countrie.length)
     }
-   
-  
-  }
-    
-        
+  }        
 }
     
-
+function noticeError() {   
+  form.innerHTML = ''
+  const myNotice = error({
+  delay: 1000,
+  hide: true,
+  sticker: false,
+  text: "Too many matches found. Pleas enter a more specific query"});
+}
 
 function onFetchError() {
   form.innerHTML = ''
-  // const myAlert = alert({
-  //   text: "Enter country name",
-  //   type: 'info',
-  //   hide: 'true',
-  //   delay: '100'
-  // });
 }
 
 
