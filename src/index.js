@@ -9,6 +9,7 @@ import { alert, error } from '@pnotify/core';
 
 const searchForm = document.querySelector('.form-control');
 const form = document.querySelector('.form')
+const countrieSpan = document.querySelector('.coun-span')
 searchForm.addEventListener('input', _.debounce(fetchCountrie, 500));
 
 
@@ -24,7 +25,9 @@ function fetchCountrie() {
 
 function renderCard(countrie) {
   console.log(countrie.length)
-  form.innerHTML = ''
+  form.innerHTML = ''  
+  const length = countrie.length
+  countrieSpan.textContent = length;
   const markup = CardTpl(countrie);
   const markupTwo = CardTplTwo(countrie);
   if (countrie.length === 1) { form.insertAdjacentHTML('beforeend', markup); }
@@ -37,9 +40,8 @@ function renderCard(countrie) {
         hide: true,
         sticker: false,
           text: "Too many matches found. Pleas enter a more specific query"});
-        
     }
-    else if (countrie.length < 10) { console.log('l') }      
+   
   
   }
     
