@@ -1,8 +1,5 @@
 import getRefs from './refs'
-// import CardTpl from '../handlebars/hendel.hbs';
-// import CardTplTwo from '../handlebars/hendel_copy.hbs';
 import fetchCountrie from './fetchImport'
-// import { noticeError } from './notice'
 import {markupFun, markupTwoFn} from './markup'
 
 
@@ -18,24 +15,6 @@ export function renderCard(countrie) {
   if (countrie.length === 1) { markupFun(countrie) }
   else {markupTwoFn(countrie)}        
 }
-
-
-// function markupFun(countrie) {
-//     const markup = CardTpl(countrie);
-//     inAdHtml(markup)
-// }
-
-// function markupTwoFn(countrie) {
-//     const markup = CardTplTwo(countrie);
-//     inAdHtml(markup);
-//     if (countrie.length > 10) {
-//       noticeError(countrie.length)
-//     } 
-// }
-
-// function inAdHtml(markup) {
-//     refs.form.insertAdjacentHTML('beforeend', markup);
-// }
 
 
 export function onFetchError() {
